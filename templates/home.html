@@ -10,9 +10,9 @@
 <body>
     <div class="home-container">
         <div class="home-box">
-            <h2>Hello and Welcome to your very own Grievance Portal</h2>
+            <h2>Hello {{ user_display_name }} Welcome to your very own Grievance Portal</h2>
             <p>Now any time you miss me or mad at me you can submit your grievance(s) through this portal</p>
-            <p>The admin team will promptly work on it</p>    
+            <p>Your Boyfriend will promptly work on it</p>    
             <a href="{{ url_for('login') }}">
                 <button>Login</button>
             </a>
