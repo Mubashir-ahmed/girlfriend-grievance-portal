@@ -19,22 +19,22 @@
                         <p><strong>Priority:</strong> {{ grievance[4] }}</p>
                         <p><strong>Status:</strong> {% if grievance[5] == 1 %} ✅ Resolved {% else %} ❌ Pending {% endif %}</p>
                         <p><strong>Response:</strong> {{ grievance[4] or 'None yet' }}</p>
-            
-                        {% if not grievance[6] %}
-                            <form method="POST" action="{{ url_for('respond', gid=grievance[0]) }}">
-                                <textarea name="response" placeholder="Type your response here..." rows="3" required></textarea>
-                                <button type="submit">Submit Response</button>
-                            </form>
-                        {% else %}
-                            <p style="color: green;"><strong>✅ You have already responded.</strong></p>
-                        {% endif %}
-            
-                        {% if grievance[5] == 1 %}
-                            <button style="background-color: #28a745; color: white;" disabled>Resolved</button>
-                        {% else %}
+                        
+                        {% if grievance[5] != 1 %}
+                            {% if not grievance[6] %}
+                                <form method="POST" action="{{ url_for('respond', gid=grievance[0]) }}">
+                                    <textarea name="response" placeholder="Type your response here..." rows="3" required></textarea>
+                                    <button type="submit">Submit Response</button>
+                                </form>
+                            {% else %}
+                                <p style="color: green;"><strong>✅ You have already responded.</strong></p>
+                            {% endif %}
+                
                             <a href="{{ url_for('resolve', gid=grievance[0]) }}">
                                 <button>Resolve</button>
                             </a>
+                        {% else %}
+                            <button style="background-color: #28a745; color: white;" disabled>Resolved</button>
                         {% endif %}
                     </div>
                 {% endfor %}

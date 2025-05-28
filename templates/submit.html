@@ -3,12 +3,13 @@
 <head>
     <title>Submit Grievance</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/script.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="submit-container">
         <div class="submit-box">
-            <h2>Submit a Grievance 🥀</h2>
+            <h2>Submit a Grievance</h2>
             <form method="POST">
                 <input type="text" name="title" placeholder="Title" required>
                 <textarea name="description" placeholder="What's bothering you?" required></textarea>
@@ -22,12 +23,17 @@
                 </select>
 
                 <label for="priority">Severity:</label>
-                <select name="priority">
-                    <option>A chunky kitkat would fix this 👺</option>
-                    <option>I hate you 👺👺</option>
-                    <option>We're breaking up 👺👺👺</option>
-                    <option>I am running away with another man 👺👺👺👺</option>
+                <select name="priority"  id="priority" onchange="toggleCustomInput()">
+                    <option>A mighty zinger will fix this</option>
+                    <option>A hug and kiss on forehead will fix this</option>
+                    <option>An Apology letter will fix this</option>
+                    <option>I am blocking you</option>
+                    <option value="other">Other (please specify)</option>
                 </select>
+
+                <div id="custom-input" style="display: none; margin-top: 10px;">
+                    <input type="text" name="custom-priority" placeholder="Please specify..." />
+                </div>
 
                 <button type="submit" class="btn">Submit 💌</button>
             </form>

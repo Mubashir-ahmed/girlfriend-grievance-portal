@@ -86,25 +86,35 @@ def submit():
         desc = request.form['description']
         mood = request.form['mood']
         priority = request.form['priority']
+        custom_priority = request.form.get('custom-priority', '').strip()
+
+        if priority == 'other' and custom_priority:
+            final_priority = custom_priority
+        else:
+            final_priority = priority
+
         with sqlite3.connect('grievances.db') as conn:
             c = conn.cursor()
             c.execute("INSERT INTO grievances (title, description, mood, priority) VALUES (?, ?, ?, ?)",
-                      (title, desc, mood, priority))
+                      (title, desc, mood, final_priority ))
             conn.commit()
             grievance_id = c.lastrowid
 
         msg = Message("New Grievance from {} 💌".format(USER_NAME),
                       sender=os.environ.get('EMAIL_ADMIN'),
                       recipients=[os.environ.get('EMAIL_ADMIN')])
+        
+        portal_url = os.environ.get('PORTAL_URL', 'http://localhost:5000')
+
         msg.html = f"""
             <h3>New Grievance Submitted 💌</h3>
             <p><strong>Title:</strong> {title}</p>
             <p><strong>Mood:</strong> {mood}</p>
-            <p><strong>Priority:</strong> {priority}</p>
+            <p><strong>Priority:</strong> {final_priority}</p>
             <p><strong>Description:</strong><br>{desc}</p>
             <hr>
             <p>Click below to respond:</p>
-            <form action="{PORTAL_URL}/login" method="GET">
+            <form action="{portal_url}/login" method="GET">
                 <button type="submit" style="padding: 10px; background-color: pink; border: none; border-radius: 5px;">Respond 💌</button>
             </form>
         """

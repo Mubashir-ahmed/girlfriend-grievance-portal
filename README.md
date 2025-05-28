@@ -4,6 +4,20 @@ A fun grievance portal built using Flask, Python, and SQLite for managing grieva
 
 ---
 
+## 📄 Clone This Repo Into Your Own GitHub (For Beginners)
+
+Want to customize or privately host your own version of this project? Here’s how you can copy it to your GitHub:
+
+1. **Visit the Original Repo**: Sign in to Github and navigate to the original repo here:  
+   `https://github.com/ishan-nerlekar/girlfriend-grievance-portal`
+2. **Click “Fork”** (top-right corner):  
+   This will create a copy of the project in your own GitHub account.
+3. **(Optional) Rename the Repository**:  
+   After forking, go to the "Settings" tab of your new repo and change the name if you like.
+4. You now have your own private/public version of the code to deploy and modify!
+
+---
+
 ## 🚀 Quick Deployment (Recommended)
 
 **No coding needed! Just follow these steps:**
