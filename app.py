@@ -44,6 +44,8 @@ def init_db():
         ''')
         conn.commit()
 
+init_db()
+
 def login_required(role):
     def wrapper(fn):
         @wraps(fn)
