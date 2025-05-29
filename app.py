@@ -58,7 +58,7 @@ def login_required(role):
 
 @app.route('/')
 def home():
-    return render_template('home.html', user_display_name=USER_NAME)
+    return render_template('home.html', user_display_name=USER_NAME, admin_display_name=ADMIN_NAME)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -72,7 +72,7 @@ def login():
             session['user'] = ADMIN_NAME
             return redirect(url_for('dashboard'))
         else:
-            flash('Invalid credentials')
+            flash('Invalid user name or password. Please try again. Note that both user name and password are case sensitive.')
     return render_template('login.html', user_display_name=USER_NAME)
 
 @app.route('/logout')

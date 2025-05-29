@@ -26,15 +26,15 @@
                                     <textarea name="response" placeholder="Type your response here..." rows="3" required></textarea>
                                     <button type="submit">Submit Response</button>
                                 </form>
+                                <button type="button" onclick="alert('You must send a response before resolving this grievance.')" style="margin-top:8px; background-color: #ccc; color: #fff; cursor: not-allowed;">Resolve</button>
                             {% else %}
                                 <p style="color: green;"><strong>✅ You have already responded.</strong></p>
+                                <a href="{{ url_for('resolve', gid=grievance[0]) }}">
+                                    <button>Resolve</button>
+                                </a>
                             {% endif %}
-                
-                            <a href="{{ url_for('resolve', gid=grievance[0]) }}">
-                                <button>Resolve</button>
-                            </a>
                         {% else %}
-                            <button style="background-color: #28a745; color: white;" disabled>Resolved</button>
+                            <span style="color: #28a745; font-weight: bold;">Resolved</span>
                         {% endif %}
                     </div>
                 {% endfor %}
